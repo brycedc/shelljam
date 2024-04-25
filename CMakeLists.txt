@@ -11,5 +11,8 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 ## Depedencies
 find_package(CURL REQUIRED) #libcurl4-openssl-dev
 
+## Sets the include directory path
+set(SHELLJAM_INCLUDE_DIR ${CMAKE_CURRENT_DIR}/include/shelljam/)
+
 # Subdirectories
 add_subdirectory(src)

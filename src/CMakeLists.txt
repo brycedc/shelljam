@@ -1,8 +1,6 @@
 # Sets all the src files to be included
-set(SRC ShellJamMain.cpp)
-
-add_executable(ShellJam ${SRC})
+add_executable(ShellJam ShellJamMain.cpp SpotifyAPI.cpp)
 
 # Include headers and libraries
-include_directories(${CURL_INCLUDE_DIR})
+target_include_directories(ShellJam PRIVATE ${SHELLJAM_INCLUDE_DIR} ${CURL_INCLUDE_DIR})
 target_link_libraries(ShellJam ${CURL_LIBRARIES})
