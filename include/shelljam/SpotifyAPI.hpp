@@ -1,30 +1,35 @@
 #ifndef SPOTIFY_API_HPP
 #define SPOTIFY_API_HPP
 
-#include <string>
 #include <curl/curl.h>
 
+#include <string>
+
 class SpotifyAPI {
-    public:
-        /**
-         * @brief Grabs the instance of the Spotify API singleton
-         * 
-         * @return Returns an instance
-         */
-        static SpotifyAPI& GetInstance() {
-            return s_pInstance;
-        }
+  public:
+    void setAccessToken(const std::string& token);
 
-        // Deletes the copy constructor
-        SpotifyAPI(const SpotifyAPI&) = delete;
+    void skipToNext();
+    
+  public: // Singleton Setup
+    static SpotifyAPI &GetInstance() {
+        static SpotifyAPI INSTANCE;
+        return INSTANCE;
+    }
 
-    private:
-        // Private Members
-        static SpotifyAPI s_pInstance;
+    // Deletes the copy constructor
+    SpotifyAPI(const SpotifyAPI &) = delete;
 
-        // Private Methods
-        SpotifyAPI();
-        ~SpotifyAPI();
+  private:
+    // Private Members
+    std::string m_accessToken;
+    CURL *p_curl;
+
+    static inline const std::string API_ENDPOINT{"https://api.spotify.com/v1"};
+
+    // Private Methods
+    SpotifyAPI();
+    ~SpotifyAPI();
 };
 
 #endif
