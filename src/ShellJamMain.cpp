@@ -54,8 +54,12 @@ int main(int argc, char **argv) {
         clientSecertFile.close();
     }
 
-    // Test the Spotify API
+    // Grabs an access token
     SpotifyAPI::GetInstance().requestAccessToken();
+
+    // Skips to next song
+    SpotifyAPI::GetInstance().skipToNext();
+
 
     return EXIT_SUCCESS;
 }

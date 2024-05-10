@@ -1,8 +1,6 @@
 #ifndef SPOTIFY_API_HPP
 #define SPOTIFY_API_HPP
 
-#include <curl/curl.h>
-
 #include <string>
 
 class SpotifyAPI {
@@ -29,7 +27,6 @@ class SpotifyAPI {
     std::string m_accessToken;
     std::string m_clientId;
     std::string m_clientSecert;
-    CURL *p_curl;
 
     static inline const std::string API_ENDPOINT{"https://api.spotify.com/v1"};
     static inline const std::string AUTH_URL{"https://accounts.spotify.com/authorize"};

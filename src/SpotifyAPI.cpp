@@ -4,15 +4,16 @@
 #include <curl/curl.h>
 #include <curl/easy.h>
 #include <iostream>
+#include <string>
 
 using json = nlohmann::json;
 
 // Private Function Prototypes
 size_t write_callback(void *contents, size_t size, size_t nmemb, std::string *p_buffer);
 
-SpotifyAPI::SpotifyAPI() : p_curl{curl_easy_init()} {}
+SpotifyAPI::SpotifyAPI() { curl_global_init(CURL_GLOBAL_ALL); }
 
-SpotifyAPI::~SpotifyAPI() { curl_easy_cleanup(p_curl); }
+SpotifyAPI::~SpotifyAPI() { curl_global_cleanup(); }
 
 void SpotifyAPI::setAccessToken(const std::string token) { m_accessToken = token; }
 
@@ -21,6 +22,9 @@ void SpotifyAPI::setClientId(const std::string clientId) { m_clientId = clientId
 void SpotifyAPI::setClientSecert(const std::string clientSecert) { m_clientSecert = clientSecert; }
 
 void SpotifyAPI::requestAccessToken() {
+    // Sets up a handle
+    CURL *p_curl = curl_easy_init();
+
     // Set up url
     curl_easy_setopt(p_curl, CURLOPT_URL, TOKEN_URL.c_str());
 
@@ -56,11 +60,19 @@ void SpotifyAPI::requestAccessToken() {
 }
 
 void SpotifyAPI::skipToNext() {
-    // Sets up endpoint
-    std::string urlEndPoint{API_ENDPOINT + "/me/player/next"};
-    curl_easy_setopt(p_curl, CURLOPT_URL, urlEndPoint.c_str());
-    curl_easy_setopt(p_curl, CURLOPT_XOAUTH2_BEARER, m_accessToken.c_str());
-    curl_easy_perform(p_curl);
+    // Sets up a handle
+    CURL *p_curl = curl_easy_init();
+
+    // Set up headers
+    struct curl_slist *headers = NULL;
+    headers = curl_slist_append(headers, ("Authorization: Bearer " + m_accessToken).c_str());
+    curl_easy_setopt(p_curl, CURLOPT_HTTPHEADER, headers);
+    curl_easy_setopt(p_curl, CURLOPT_URL, "https://api.spotify.com/v1/me/player/next");
+    curl_easy_setopt(p_curl, CURLOPT_POST, 1L); // Set the request to POST
+    CURLcode res = curl_easy_perform(p_curl);
+
+    curl_slist_free_all(headers);
+    curl_easy_cleanup(p_curl);
 }
 
 size_t write_callback(void *contents, size_t size, size_t nmemb, std::string *p_buffer) {
