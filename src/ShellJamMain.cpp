@@ -55,10 +55,7 @@ int main(int argc, char **argv) {
     }
 
     // Grabs an access token
-    SpotifyAPI::GetInstance().requestAccessToken();
-
-    // Skips to next song
-    SpotifyAPI::GetInstance().skipToNext();
+   SpotifyAPI::GetInstance().requestUserAuthorization(); 
 
 
     return EXIT_SUCCESS;

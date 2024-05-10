@@ -10,6 +10,7 @@ class SpotifyAPI {
     void setClientSecert(const std::string clientSecert);
     
     void requestAccessToken();
+    void requestUserAuthorization();
 
     void skipToNext();
     
