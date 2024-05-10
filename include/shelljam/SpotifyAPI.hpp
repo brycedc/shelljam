@@ -7,7 +7,11 @@
 
 class SpotifyAPI {
   public:
-    void setAccessToken(const std::string& token);
+    void setAccessToken(const std::string token);
+    void setClientId(const std::string clientId);
+    void setClientSecert(const std::string clientSecert);
+    
+    void requestAccessToken();
 
     void skipToNext();
     
@@ -23,9 +27,13 @@ class SpotifyAPI {
   private:
     // Private Members
     std::string m_accessToken;
+    std::string m_clientId;
+    std::string m_clientSecert;
     CURL *p_curl;
 
     static inline const std::string API_ENDPOINT{"https://api.spotify.com/v1"};
+    static inline const std::string AUTH_URL{"https://accounts.spotify.com/authorize"};
+    static inline const std::string TOKEN_URL{"https://accounts.spotify.com/api/token"};
 
     // Private Methods
     SpotifyAPI();
