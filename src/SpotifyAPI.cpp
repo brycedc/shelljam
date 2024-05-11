@@ -70,8 +70,8 @@ void SpotifyAPI::requestUserAuthorization() {
 
     // Set up callback function to handle response data
     std::string respone_buffer{};
-    curl_easy_setopt(p_curl, CURLOPT_WRITEFUNCTION, write_callback);
-    curl_easy_setopt(p_curl, CURLOPT_WRITEDATA, &respone_buffer);
+    curl_easy_setopt(p_curl, CURLOPT_HEADERFUNCTION, write_callback);
+    curl_easy_setopt(p_curl, CURLOPT_HEADERDATA, &respone_buffer);
 
     // Send request
     CURLcode res = curl_easy_perform(p_curl);
