@@ -12,17 +12,16 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
 ## Depedencies
 find_package(CURL REQUIRED) #libcurl4-openssl-dev
+find_package(GTest REQUIRED) #gtest 
 
-## Sets the include directory path
-set(INCLUDE_DIR ${CMAKE_CURRENT_DIR}/include)
+# Setup unit test
+enable_testing()
 
-
-# Sets the root project path
+# Sets paths 
+set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
 set(PROJECTPATH ${CMAKE_SOURCE_DIR})
 configure_file(include/shelljam/ProjectPath.hpp.in include/shelljam/ProjectPath.hpp)
 
-# Adds include directory
-include_directories(include ${CMAKE_BINARY_DIR}/include)
-
 # Subdirectories
 add_subdirectory(src)
+add_subdirectory(test)

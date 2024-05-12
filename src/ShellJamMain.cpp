@@ -55,8 +55,7 @@ int main(int argc, char **argv) {
     }
 
     // Grabs an access token
-   SpotifyAPI::GetInstance().requestUserAuthorization(); 
-
+    SpotifyAPI::GetInstance().requestUserAuthorization();
 
     return EXIT_SUCCESS;
 }

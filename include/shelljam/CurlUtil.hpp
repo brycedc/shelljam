@@ -30,6 +30,10 @@ class CurlUtil {
   public:
     enum RequestMethods { GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH };
 
+    std::string encodeURL(const std::string &stringToEncode);
+
+    void getRequest(const std::string &url, const std::string &query, const std::string &token);
+
   private:
     /**
      * @brief Constructor for CurlUtil
@@ -41,10 +45,6 @@ class CurlUtil {
      * @note Declared private for singleton design pattern
      */
     ~CurlUtil();
-
-    std::string encodeURL(const std::string& stringToEncode);
-
-    void getRequest(const std::string &url, const std::string &query, const std::string &token);
 };
 
 #endif

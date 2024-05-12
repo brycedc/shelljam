@@ -6,3 +6,4 @@ My attempt to create a CLI media player.
 
 - `libcurl4-openssl-dev` (8.5.0)
 - `nlohmann/json`
+- `GTest`
