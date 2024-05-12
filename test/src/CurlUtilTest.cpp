@@ -10,6 +10,6 @@ class CurlUtilTest : public testing::Test {
     
 
 TEST(CurlUtilTesting, encodedURL_ReturnsEncodedString) {
-    std::string expectedResult{};
-    EXPECT_EQ(expectedResult, CurlUtil::instance().encodeURL("Test"));
+    std::string expectedResult{"https%3A%2F%2Fexample.com"};
+    EXPECT_EQ(expectedResult, CurlUtil::instance().encodeURL("https://example.com"));
 }

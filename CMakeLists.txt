@@ -19,6 +19,7 @@ enable_testing()
 
 # Sets paths 
 set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
+set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
 set(PROJECTPATH ${CMAKE_SOURCE_DIR})
 configure_file(include/shelljam/ProjectPath.hpp.in include/shelljam/ProjectPath.hpp)
 

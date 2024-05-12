@@ -1,15 +1,16 @@
 # Set Headers
-set(HEADERS ${INCLUDE_DIR}/shelljam/CurlUtil.hpp)
+set(HEADERS)
 
 #Set sources
 set(SOURCES CurlUtilTest.cpp)
 
+# Moves the test executable to the test/src directory so make test works
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test/src")
+
 # Creates test executable
 add_executable(runUnitTests ${SOURCES} ${HEADERS})
-
 # Sets up include and libraries needed by test executable
-target_link_libraries(runUnitTests gtest)
-target_include_directories(runUnitTests PRIVATE ${INCLUDE_DIR}/)
+target_link_libraries(runUnitTests GTest::Main ShellJam)
 
 # Adds test to ctest
 add_test(runUnitTests runUnitTests)
