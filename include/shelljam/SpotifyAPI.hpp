@@ -5,23 +5,17 @@
 
 class SpotifyAPI {
   public:
+    SpotifyAPI();
+    ~SpotifyAPI();
+
     void setAccessToken(const std::string token);
     void setClientId(const std::string clientId);
     void setClientSecert(const std::string clientSecert);
-    
-    void requestAccessToken();
-    void requestUserAuthorization();
 
-    void skipToNext();
-    
-  public: // Singleton Setup
-    static SpotifyAPI &GetInstance() {
-        static SpotifyAPI INSTANCE;
-        return INSTANCE;
-    }
+    bool requestAccessToken();
+    bool requestUserAuthorization();
 
-    // Deletes the copy constructor
-    SpotifyAPI(const SpotifyAPI &) = delete;
+    bool skipToNext();
 
   private:
     // Private Members
@@ -32,10 +26,6 @@ class SpotifyAPI {
     static inline const std::string API_ENDPOINT{"https://api.spotify.com/v1"};
     static inline const std::string AUTH_URL{"https://accounts.spotify.com/authorize"};
     static inline const std::string TOKEN_URL{"https://accounts.spotify.com/api/token"};
-
-    // Private Methods
-    SpotifyAPI();
-    ~SpotifyAPI();
 };
 
 #endif

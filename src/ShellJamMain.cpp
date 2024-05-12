@@ -7,6 +7,8 @@
 
 int main(int argc, char **argv) {
 
+    SpotifyAPI spotifyAPI;
+
     // Reads the access token from ${PROJECT}/api/token.txt
     {
         std::string filePath{PROJECTPATH "/api/token.txt"};
@@ -19,7 +21,7 @@ int main(int argc, char **argv) {
         // Passes the token value to the Spotify API
         std::string token{};
         std::getline(tokenFile, token);
-        SpotifyAPI::GetInstance().setAccessToken(token);
+        spotifyAPI.setAccessToken(token);
         tokenFile.close();
     }
     // Reads the client id from ${PROJECT}/api/clientId.txt
@@ -34,7 +36,7 @@ int main(int argc, char **argv) {
         // Passes the token value to the Spotify API
         std::string clientId{};
         std::getline(clientIdFile, clientId);
-        SpotifyAPI::GetInstance().setClientId(clientId);
+        spotifyAPI.setClientId(clientId);
         clientIdFile.close();
     }
 
@@ -50,12 +52,12 @@ int main(int argc, char **argv) {
         // Passes the token value to the Spotify API
         std::string clientSecert{};
         std::getline(clientSecertFile, clientSecert);
-        SpotifyAPI::GetInstance().setClientSecert(clientSecert);
+        spotifyAPI.setClientSecert(clientSecert);
         clientSecertFile.close();
     }
 
     // Grabs an access token
-    SpotifyAPI::GetInstance().requestUserAuthorization();
+    spotifyAPI.requestUserAuthorization();
 
     return EXIT_SUCCESS;
 }

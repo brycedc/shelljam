@@ -32,7 +32,8 @@ class CurlUtil {
 
     std::string encodeURL(const std::string &stringToEncode);
 
-    void getRequest(const std::string &url, const std::string &query, const std::string &token);
+    bool httpGET(const std::string &url, const std::string &query, const std::string &token);
+    bool postRequest(const std::string &url, const std::string &data, const std::string &token);
 
   private:
     /**
@@ -45,6 +46,8 @@ class CurlUtil {
      * @note Declared private for singleton design pattern
      */
     ~CurlUtil();
+
+    size_t write_callback(void *contents, size_t size, size_t nmemb, std::string *p_buffer);
 };
 
 #endif

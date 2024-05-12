@@ -2,7 +2,7 @@
 set(HEADERS)
 
 #Set sources
-set(SOURCES CurlUtilTest.cpp)
+set(SOURCES CurlUtilTest.cpp SpotifyAPITest.cpp)
 
 # Moves the test executable to the test/src directory so make test works
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test/src")
